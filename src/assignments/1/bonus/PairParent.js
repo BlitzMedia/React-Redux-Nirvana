@@ -8,7 +8,7 @@ class PairParent extends Component {
       list: [
         1,
         'Two',
-        2,
+        3,
         'Four'
       ]
     }

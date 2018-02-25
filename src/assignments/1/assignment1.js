@@ -1,26 +1,29 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React, { Component } from 'react'
 import './a1.css'
+
+import PairParent from './bonus/PairParent'
 
 class Assignment1 extends Component {
   render() {
     return (
       <div>
-        <h2>Assignment 1</h2>
+        <section className="firstComponent">
+          <h2>Assignment 1</h2>
 
-        <MyFirstClassComponent />
+          <MyFirstClassComponent />
+        </section>
+
+        <section className="secondComponent">
+          <h3>Bonus</h3>
+
+          <PairParent />
+        </section>
       </div>
     );
   }
 }
 
-const MyFirstFunctionalComponent = (props) => {
-   return (
-      <div>
-        <h3>{props.num * props.multiplier}</h3>
-      </div>
-   )
-}
+const MyFirstFunctionalComponent = (props) => <h3>{props.num * props.multiplier}</h3>
 
 class MyFirstClassComponent extends React.Component {
   constructor() {

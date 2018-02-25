@@ -5,6 +5,11 @@ main div {
   justify-content: center;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
 form {
   padding: 1em;
   display: flex;
@@ -45,4 +50,10 @@ button:hover, input[type="submit"]:focus {
 
 #multiply {
   transform: scale(1.2)
+}
+
+.firstComponent {
+  border-bottom: 1px solid gainsboro;
+  padding-bottom: 2em;
+  margin-bottom: 3em;
 }

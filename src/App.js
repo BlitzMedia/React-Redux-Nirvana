@@ -5,7 +5,7 @@ import './App.css';
 
 import Home from './home'
 import Assignment1 from './assignments/1/assignment1'
-import Assignment2a from './assignments/2/a/assignment2a'
+import Calculator from './assignments/2/a/assignment2a'
 
 class App extends Component {
   render() {
@@ -20,13 +20,13 @@ class App extends Component {
           <nav>
             <Link to={'/'}>Home</Link>
             <Link to={'/assignments/1'}>1st</Link>
-            <Link to={'/assignments/2/a'}>2nd - A</Link>
+            <Link to={'/assignments/2/a'}>2nd-A</Link>
           </nav>
 
           <main>
             <Route exact path="/" component={Home}></Route>
             <Route path="/assignments/1" component={Assignment1}></Route>
-            <Route path="/assignments/2/a" component={Assignment2a}></Route>
+            <Route path="/assignments/2/a" component={Calculator}></Route>
           </main>
         </div>
       </Router>

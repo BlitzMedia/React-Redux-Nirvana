@@ -5,6 +5,7 @@ import './App.css';
 
 import Home from './home'
 import Assignment1 from './assignments/1/assignment1'
+import Assignment2a from './assignments/2/a/assignment2a'
 
 class App extends Component {
   render() {

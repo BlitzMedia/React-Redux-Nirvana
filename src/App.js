@@ -18,12 +18,14 @@ class App extends Component {
 
           <nav>
             <Link to={'/'}>Home</Link>
-            <Link to={'/assignments/1'}>1st Assignment</Link>
+            <Link to={'/assignments/1'}>1st</Link>
+            <Link to={'/assignments/2/a'}>2nd - A</Link>
           </nav>
 
           <main>
             <Route exact path="/" component={Home}></Route>
             <Route path="/assignments/1" component={Assignment1}></Route>
+            <Route path="/assignments/2/a" component={Assignment2a}></Route>
           </main>
         </div>
       </Router>

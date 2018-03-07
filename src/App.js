@@ -13,17 +13,19 @@ class App extends Component {
       <Router>
         <div className="App">
           <header role="banner">
-            <h1 className="logo"><span role="img" aria-label="Blitz!">⚡</span> React/Redux Nirvana</h1>
+            <div className="container">
+              <h1 className="logo"><span role="img" aria-label="Blitz!">⚡</span> React/Redux Nirvana</h1>
 
-            <nav>
-              <Link to={'/'}>Home</Link>
-              <Link to={'/assignments/1'}>1st</Link>
-              <Link to={'/assignments/2/a'}>2nd-A</Link>
-              <Link to={'/assignments/2/b'}>2nd-B</Link>
-            </nav>
+              <nav>
+                <Link to={'/'}>Home</Link>
+                <Link to={'/assignments/1'}>1st</Link>
+                <Link to={'/assignments/2/a'}>2nd-A</Link>
+                <Link to={'/assignments/2/b'}>2nd-B</Link>
+              </nav>
+            </div>
           </header>
 
-          <main role="main" class="container">
+          <main role="main" className="container">
             <Route exact path="/" component={Home}></Route>
             <Route path="/assignments/1" component={Assignment1}></Route>
             <Route path="/assignments/2/a" component={Calculator}></Route>

@@ -824,22 +824,28 @@ there.
 /* Larger than tablet */
 /* Larger than desktop */
 /* Larger than Desktop HD */
-header[role="banner"], header[role="banner"] nav {
+header[role="banner"] .container, header[role="banner"] nav {
   display: flex;
   align-items: center;
   justify-content: space-between; }
+  header[role="banner"] .container:after, header[role="banner"] nav:after {
+    display: none; }
 
 body {
   letter-spacing: .01em; }
 
 header[role="banner"] {
-  padding: 0.5em 1em;
   background-color: #b0976d;
   color: rgba(255, 255, 255, 0.9);
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.15); }
   header[role="banner"] .logo {
     font-size: 1em;
     margin: 0; }
+  header[role="banner"] span[role="img"] {
+    position: relative;
+    top: 2px; }
+  header[role="banner"] .container {
+    padding: 0.5em 0; }
   header[role="banner"] nav {
     justify-content: flex-end; }
     header[role="banner"] nav a, header[role="banner"] nav a:visited {
@@ -848,4 +854,4 @@ header[role="banner"] {
       margin-left: 1em; }
 
 main[role="main"] {
-  padding: 2em; }
+  padding: 2em 0; }

@@ -6,27 +6,29 @@ import './App.css';
 import Home from './home'
 import Assignment1 from './assignments/1/assignment1'
 import Calculator from './assignments/2/a/assignment2a'
+import Website from './assignments/2/b/assignment2b'
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">React/Redux Nirvana</h1>
+          <header role="banner">
+            <h1 className="logo">⚡ React/Redux Nirvana</h1>
+
+            <nav role="navigation">
+              <Link to={'/'}>Home</Link>
+              <Link to={'/assignments/1'}>1st</Link>
+              <Link to={'/assignments/2/a'}>2nd-A</Link>
+              <Link to={'/assignments/2/b'}>2nd-B</Link>
+            </nav>
           </header>
 
-          <nav>
-            <Link to={'/'}>Home</Link>
-            <Link to={'/assignments/1'}>1st</Link>
-            <Link to={'/assignments/2/a'}>2nd-A</Link>
-          </nav>
-
-          <main>
+          <main role="main" class="container">
             <Route exact path="/" component={Home}></Route>
             <Route path="/assignments/1" component={Assignment1}></Route>
             <Route path="/assignments/2/a" component={Calculator}></Route>
+            <Route path="/assignments/2/b" component={Website}></Route>
           </main>
         </div>
       </Router>

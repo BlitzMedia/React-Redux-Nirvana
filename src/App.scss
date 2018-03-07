@@ -1,59 +1,51 @@
-body {
-  letter-spacing: .01em;
-}
+// Imports
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import 'skeleton-css/css/normalize';
+@import 'skeleton-css/css/skeleton';
 
-.App {
-  text-align: center;
-}
+// Vars
+$blitzDorado: #b0976d;
+$blitzWhite: fade-out(white, .1);
+$blitzBlack: fade-out(black, .85);
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 20px;
-}
+$fullPadding: 1em;
+$superPadding: ($fullPadding * 2);
+$halfPadding: ($fullPadding / 2);
 
-.App-header {
-  padding: 0px 1em;
-  background-color: #b0976d;
-  background-color: #b0976d;
-  color: rgba(255,255,255,.9);
-  box-shadow: 0px 4px 5px 0px rgba(0,0,0,.12);
-
+// Mixins
+%valign {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.App-title {
-  font-size: 1em;
-  font-weight: lighter;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+// CSS
+body {
+  letter-spacing: .01em;
 }
 
-.App-intro {
-  font-size: large;
+header[role="banner"] {
+  padding: $halfPadding $fullPadding;
+  background-color: $blitzDorado;
+  color: $blitzWhite;
+  box-shadow: 0px 4px 5px 0px $blitzBlack;
+
+  @extend %valign;
+
+  .logo {
+    font-size: 1em;
+    margin: 0;
+  }
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-a, a:visited {
-  text-decoration: none;
-  font-weight: lighter;
-}
-
-a, button, input[type="submit"] { cursor: pointer; }
-
-nav {
-  font-size: 78%;
-  display: flex;
-  align-items: center;
+nav[role="navigation"] {
+  @extend %valign;
   justify-content: flex-end;
-  color: white;
-}
-nav a, nav a:visited { color: rgba(255,255,255,.9); }
 
-nav * + * { margin-left: 1em; }
+  a, a:visited { color: $blitzWhite; }
+  * + * { margin-left: $fullPadding; }
+}
+
+main[role="main"] {
+  padding: $superPadding;
+}

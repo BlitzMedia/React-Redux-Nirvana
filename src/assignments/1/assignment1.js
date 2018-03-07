@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './a1.css'
 
 import PairParent from './bonus/PairParent'
 
@@ -13,7 +12,7 @@ class Assignment1 extends Component {
       total: 0,
     }
   }
-  
+
   updateTotal = (value) => {
     this.setState({ total: this.state.total + value })
   }
@@ -80,5 +79,3 @@ export default Assignment1;
 
 
 // https://gist.github.com/faceyspacey/229319b9b7cc9c07188e6d9f313bafef
-
-

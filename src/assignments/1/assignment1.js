@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 
 import PairParent from './bonus/PairParent'
 
-function updateTotal2() {}
-
 class Assignment1 extends Component {
   constructor(props, context) {
     super(props, context)

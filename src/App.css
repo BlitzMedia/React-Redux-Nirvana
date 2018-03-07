@@ -824,7 +824,7 @@ there.
 /* Larger than tablet */
 /* Larger than desktop */
 /* Larger than Desktop HD */
-header[role="banner"], nav[role="navigation"] {
+header[role="banner"], header[role="banner"] nav {
   display: flex;
   align-items: center;
   justify-content: space-between; }
@@ -840,13 +840,12 @@ header[role="banner"] {
   header[role="banner"] .logo {
     font-size: 1em;
     margin: 0; }
-
-nav[role="navigation"] {
-  justify-content: flex-end; }
-  nav[role="navigation"] a, nav[role="navigation"] a:visited {
-    color: rgba(255, 255, 255, 0.9); }
-  nav[role="navigation"] * + * {
-    margin-left: 1em; }
+  header[role="banner"] nav {
+    justify-content: flex-end; }
+    header[role="banner"] nav a, header[role="banner"] nav a:visited {
+      color: rgba(255, 255, 255, 0.9); }
+    header[role="banner"] nav * + * {
+      margin-left: 1em; }
 
 main[role="main"] {
   padding: 2em; }

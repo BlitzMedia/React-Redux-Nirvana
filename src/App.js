@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import logo from './assets/blitzlogo.png';
 import './App.css';
 
 import Home from './home'
@@ -14,9 +13,9 @@ class App extends Component {
       <Router>
         <div className="App">
           <header role="banner">
-            <h1 className="logo">⚡ React/Redux Nirvana</h1>
+            <h1 className="logo"><span role="img" aria-label="Blitz!">⚡</span> React/Redux Nirvana</h1>
 
-            <nav role="navigation">
+            <nav>
               <Link to={'/'}>Home</Link>
               <Link to={'/assignments/1'}>1st</Link>
               <Link to={'/assignments/2/a'}>2nd-A</Link>

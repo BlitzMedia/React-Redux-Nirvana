@@ -36,14 +36,14 @@ header[role="banner"] {
     font-size: 1em;
     margin: 0;
   }
-}
 
-nav[role="navigation"] {
-  @extend %valign;
-  justify-content: flex-end;
+  nav {
+    @extend %valign;
+    justify-content: flex-end;
 
-  a, a:visited { color: $blitzWhite; }
-  * + * { margin-left: $fullPadding; }
+    a, a:visited { color: $blitzWhite; }
+    * + * { margin-left: $fullPadding; }
+  }
 }
 
 main[role="main"] {

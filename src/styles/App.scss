@@ -1,10 +1,8 @@
 // Imports
-@import url('https://fonts.googleapis.com/css?family=Raleway');
-@import 'skeleton-css/css/normalize';
-@import 'skeleton-css/css/skeleton';
+
+@import "blitzers/lib.scss";
 
 // Vars
-$blitzDorado: #b0976d;
 $blitzWhite: fade-out(white, .1);
 $blitzBlack: fade-out(black, .85);
 

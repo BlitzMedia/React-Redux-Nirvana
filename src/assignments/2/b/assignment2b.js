@@ -1,12 +1,119 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-class Website extends Component {
+// ASSIGNMENT 2b:
+// Make a page switcher called <Website /> . On 2 of the pages, put the <TemperatureInput /> from assignment 2a.
+// Lift the shared state into this component. Unlike the example from reactjs.org docs, only one input will show at
+// a time. You will learn how to create "pages", navigation (aka links) between pages, and how to "lift" state
+// that is shared between all pages to the parent component they all have in common.
+//
+// This should be done in 2 parts:
+// 1) make the page switcher work by changing the `page` state on click of the links
+// 2) work on passing the `onTemperatureChange` + `temperature` + `scale` props to the `TemperatureInput` component; then glue it all together.
+
+const Home = () =>
+  <div>
+    <h2>This is the Home of Assignment 2b.</h2>
+    <p>
+      It is a low level custom-built non-URL-based page routing mechanism solution based on state.
+      It lets you switch pages, while demonstrating the "lifting of state" that is "shared" between multiple pages :)
+    </p>
+  </div>
+
+const TemperatureInput = () => <input type="text"/>
+
+// do something cool to demonstrate how far you can take this and how well you understand it
+const Bonus = () => <p>Bonus</p>
+
+const pages = {
+  home: {
+    backgroundColor: 'purple',
+    title: 'Home',
+    Component: Home
+  },
+  celsius: {
+    backgroundColor: 'red',
+    title: 'Celsius Input',
+    Component: TemperatureInput
+  },
+  fahrenheit: {
+    backgroundColor: 'orange',
+    title: 'Fahrenheit Input',
+    Component: TemperatureInput
+  },
+  bonus: {
+    backgroundColor: 'blue',
+    title: 'Do Something Cool',
+    Component: Bonus
+  }
+}
+
+// <Website /> is the "parent" component they all have in common where the "shared" state is "lifted" to.
+// Embed this near the top of your CRA component tree, i.e. within the 2b route.
+
+export default class Website extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      page: 'home',
+      temperature: '',
+      scale: 'c'
+    }
+  }
+
+  changePage = (page) => {
+    this.setState({page: page})
+  }
+
+  handleCelsiusChange = (temperature) => {
+    this.setState({ scale: 'c', temperature })
+  }
+
+  handleFahrenheitChange = (temperature) => {
+    this.setState({ scale: 'f', temperature })
+  }
+
   render() {
+    const { page, temperature, scale } = this.state
+    const { backgroundColor, title, Component } = pages[page] // yes, you can dynamically acquire component classes!, which you then "instantiate" as component instances by wrapping in angled brackets: <Component />
+
+    const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature
+    const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature
+    const onTemperatureChange = // fill this in
+
+    const pages = Object.keys(pages) // get the keys of an object as an array
+
     return (
-      <div className="row">
-        <h1>Hola!</h1>
+      <div  style={{ ...pageStyle, backgroundColor }}>
+        <NavLinks onChange={this.changePage} pages={pages} />
+
+        <div class='content'>
+          <h1 class='title'>{title}</h1>
+          <BoilingVerdict celsius={parseFloat(celsius)} />
+          <Component /* fill in the props here -- hint: it's fine if all pages have the same props even if they don't use them */ />
+        </div>
       </div>
     )
   }
 }
-export default Website
+
+
+const NavLinks = ({ pages, onChange }) =>
+  <div>
+    {pages.map(page => (
+      <a style={linkStyle} href='#' onClick={/* fill this in */}>{page}</a>
+    ))}
+  </div>
+
+
+// styles
+const pageStyle = {
+  border: '2px solid black',
+  width: 600,
+  height: 400
+}
+
+const linkStyle = {
+  textDecoration: 'underline',
+  marginRight: 10,
+  cursor: 'pointer'
+}

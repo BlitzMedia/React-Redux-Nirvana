@@ -1,29 +1,14 @@
-// Imports
-
 @import "blitzers/lib.scss";
 
-// Vars
-$blitzWhite: fade-out(white, .1);
-$blitzBlack: fade-out(black, .85);
 
-$fullPadding: 1em;
-$superPadding: ($fullPadding * 2);
-$halfPadding: ($fullPadding / 2);
-
-// Mixins
-%valign {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  &:after { display: none; }
-}
-
-// CSS
 body {
   letter-spacing: .01em;
 }
 
 header[role="banner"] {
+  @extend %container;
+  @extend %valign;
+
   background-color: $blitzDorado;
   color: $blitzWhite;
   box-shadow: 0px 4px 5px 0px $blitzBlack;
@@ -37,11 +22,6 @@ header[role="banner"] {
     top: 2px;
   }
 
-  .container {
-    padding: $halfPadding 0;
-    @extend %valign;
-  }
-
   nav {
     @extend %valign;
     justify-content: flex-end;
@@ -52,5 +32,5 @@ header[role="banner"] {
 }
 
 main[role="main"] {
-  padding: $superPadding 0;
+  @extend %container;
 }

@@ -4,4 +4,26 @@ $blitzDorado: #b0976d;
 $primary: $blitzDorado;
 $family-sans-serif: "Raleway", "Helvetica Neue", sans-serif;
 
+
+
 @import "bulma/bulma.sass";
+
+
+
+// Vars
+$blitzWhite: fade-out(white, .1);
+$blitzBlack: fade-out(black, .85);
+
+$fullPadding: $size-6;
+$superPadding: ($fullPadding * 2);
+$halfPadding: ($fullPadding / 2);
+
+// Mixins
+%valign {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &:after { display: none; }
+}
+
+%container { padding: $fullPadding; }

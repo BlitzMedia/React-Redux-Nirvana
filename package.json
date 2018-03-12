@@ -21,6 +21,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "bloomer": "^0.6.3",
     "bulma": "^0.6.2"
   }
 }

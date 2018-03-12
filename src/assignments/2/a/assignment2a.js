@@ -41,6 +41,11 @@ class Calculator extends Component {
     const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
     const fahrenheit = scale === 'f' ? temperature : tryConvert(temperature, toFahrenheit);
 
+    const onTemperatureChange = ({scale, temperature}) => {
+      scale === 'c' ? console.log('hola Celsius') : console.log('hola Fahrenheit!')
+    }
+
+
     return (
       <div>
 

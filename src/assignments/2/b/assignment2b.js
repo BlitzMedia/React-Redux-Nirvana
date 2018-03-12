@@ -1,54 +1,5 @@
 import React from 'react'
-
-// ASSIGNMENT 2b:
-// Make a page switcher called <Website /> . On 2 of the pages, put the <TemperatureInput /> from assignment 2a.
-// Lift the shared state into this component. Unlike the example from reactjs.org docs, only one input will show at
-// a time. You will learn how to create "pages", navigation (aka links) between pages, and how to "lift" state
-// that is shared between all pages to the parent component they all have in common.
-//
-// This should be done in 2 parts:
-// 1) make the page switcher work by changing the `page` state on click of the links
-// 2) work on passing the `onTemperatureChange` + `temperature` + `scale` props to the `TemperatureInput` component; then glue it all together.
-
-const Home = () =>
-  <div>
-    <h2>This is the Home of Assignment 2b.</h2>
-    <p>
-      It is a low level custom-built non-URL-based page routing mechanism solution based on state.
-      It lets you switch pages, while demonstrating the "lifting of state" that is "shared" between multiple pages :)
-    </p>
-  </div>
-
-const TemperatureInput = () => <input type="text"/>
-
-// do something cool to demonstrate how far you can take this and how well you understand it
-const Bonus = () => <p>Bonus</p>
-
-const pages = {
-  home: {
-    backgroundColor: 'purple',
-    title: 'Home',
-    Component: Home
-  },
-  celsius: {
-    backgroundColor: 'red',
-    title: 'Celsius Input',
-    Component: TemperatureInput
-  },
-  fahrenheit: {
-    backgroundColor: 'orange',
-    title: 'Fahrenheit Input',
-    Component: TemperatureInput
-  },
-  bonus: {
-    backgroundColor: 'blue',
-    title: 'Do Something Cool',
-    Component: Bonus
-  }
-}
-
-// <Website /> is the "parent" component they all have in common where the "shared" state is "lifted" to.
-// Embed this near the top of your CRA component tree, i.e. within the 2b route.
+import { Section, Container, Box, Title, Subtitle, Heading, Navbar, NavbarMenu, NavbarStart, NavbarEnd, NavbarItem, Field, Control, Input, Icon, Button  } from 'bloomer'
 
 export default class Website extends React.Component {
   constructor(props) {
@@ -60,60 +11,147 @@ export default class Website extends React.Component {
     }
   }
 
-  changePage = (page) => {
-    this.setState({page: page})
-  }
-
-  handleCelsiusChange = (temperature) => {
-    this.setState({ scale: 'c', temperature })
-  }
-
-  handleFahrenheitChange = (temperature) => {
-    this.setState({ scale: 'f', temperature })
-  }
+  changePage = (page) => { this.setState({page: page}) }
+  handleCelsiusChange = temperature => { this.setState({scale: 'c', temperature}); }
+  handleFahrenheitChange = temperature => { this.setState({scale: 'f', temperature}); }
 
   render() {
     const { page, temperature, scale } = this.state
-    const { backgroundColor, title, Component } = pages[page] // yes, you can dynamically acquire component classes!, which you then "instantiate" as component instances by wrapping in angled brackets: <Component />
+    const { backgroundColor, title, Component } = pages[page]
+
+    const navvers = Object.keys(pages) // We had to change the name because it was giving an error. Related to trying to override const, perhaps?
 
     const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature
     const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature
-    const onTemperatureChange = // fill this in
 
-    const pages = Object.keys(pages) // get the keys of an object as an array
+    const onTemperatureChange = ({scale, temperature}) => {
+      //scale === 'c' ? console.log('hola Celsius') : console.log('hola Fahrenheit!')
+      console.log(scale)
+    }
 
-    return (
-      <div  style={{ ...pageStyle, backgroundColor }}>
-        <NavLinks onChange={this.changePage} pages={pages} />
+    const props = { page, temperature }
 
-        <div class='content'>
-          <h1 class='title'>{title}</h1>
-          <BoilingVerdict celsius={parseFloat(celsius)} />
-          <Component /* fill in the props here -- hint: it's fine if all pages have the same props even if they don't use them */ />
-        </div>
-      </div>
+    return(
+      <Section>
+        <NavLinks onChange={this.changePage} pages={navvers} activePage={page} />
+
+        <Container style={{...pageStyle, backgroundColor}}>
+          <Component {...props} onChange={onTemperatureChange(scale, temperature)} />
+        </Container>
+
+      </Section>
     )
   }
 }
 
+const NavLinks = ({ pages, onChange, activePage }) =>
+  <Container>
+    <Navbar>
+      <NavbarMenu isActive={true}>
+        <NavbarStart>
+          <NavbarItem>
+            <Title>{activePage}</Title>
+          </NavbarItem>
+        </NavbarStart>
 
-const NavLinks = ({ pages, onChange }) =>
-  <div>
-    {pages.map(page => (
-      <a style={linkStyle} href='#' onClick={/* fill this in */}>{page}</a>
-    ))}
-  </div>
+        <NavbarEnd>
+          {pages.map(page => (
+          <NavbarItem href='#/' onClick={() => onChange(page)}>{page}</NavbarItem>
+          ))}
+        </NavbarEnd>
+      </NavbarMenu>
+    </Navbar>
+  </Container>
 
+// Components
+const Home = () =>
+  <Box>
+    <Subtitle tag='h3'>This is the Home of Assignment 2b.</Subtitle>
+    <p>
+      It is a low level custom-built non-URL-based page routing mechanism solution based on state.
+      It lets you switch pages, while demonstrating the "lifting of state" that is "shared" between multiple pages :)
+    </p>
+  </Box>
+
+const TemperatureInput = (props) =>
+  <Field hasAddons>
+    <Control hasIcons>
+      <Input type="text" placeholder={cap(props.page) + '!'} />
+      <Icon isSize='small' isAlign='left'>
+          <span className={"fa fa-" + (pages[props.page].icon)} aria-hidden="true" />
+          {/* This doesn't work, we don't know why!!! */}
+      </Icon>
+    </Control>
+
+    <Control>
+      <Button isColor='warning'>Go! - {pages[props.page].scale}</Button>
+    </Control>
+  </Field>
+
+const Bonus = () => <p>Bonus</p>
+
+// Pages
+const pages = {
+  home: {
+    backgroundColor: 'purple',
+    title: 'Home',
+    Component: Home
+  },
+  celsius: {
+    backgroundColor: 'red',
+    icon: 'fire',
+    title: 'Celsius!',
+    scale: 'c',
+    Component: TemperatureInput
+  },
+  fahrenheit: {
+    backgroundColor: 'orange',
+    icon: 'snowflake',
+    title: 'Fahrenheit!',
+    scale: 'f',
+    Component: TemperatureInput
+  },
+  bonus: {
+    backgroundColor: 'blue',
+    title: 'Do Something Cool',
+    Component: Bonus
+  }
+}
 
 // styles
 const pageStyle = {
-  border: '2px solid black',
-  width: 600,
-  height: 400
+  color: 'white',
+  padding: '4em'
 }
 
-const linkStyle = {
-  textDecoration: 'underline',
-  marginRight: 10,
-  cursor: 'pointer'
+// Functions for calculating TemperatureInput
+const scaleNames = {
+  c: 'Celsius',
+  f: 'Fahrenheit'
 }
+
+// Calculadora
+
+function BoilingVerdict(props) {
+  if (props.celsius >= 100) return <p>The water would boil.</p>;
+  return <p>The water would not boil.</p>;
+}
+
+function toCelsius(fahrenheit) { return (fahrenheit - 32) * 5 / 9; }
+function toFahrenheit(celsius) { return (celsius * 9 / 5) + 32; }
+
+function tryConvert(temperature, convert) {
+  const input = parseFloat(temperature);
+  if (Number.isNaN(input)) return '';
+
+  const output = convert(input);
+  const rounded = Math.round(output * 1000) / 1000;
+  return rounded.toString();
+}
+
+function cap(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+// Questions!
+// Why put click handler on callback!

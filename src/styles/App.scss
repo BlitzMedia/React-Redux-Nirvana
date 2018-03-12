@@ -37,3 +37,7 @@ header[role="banner"] {
 main[role="main"] {
   @extend %container;
 }
+
+.title {
+  font-family: $family-sans-serif;
+}

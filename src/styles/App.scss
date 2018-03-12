@@ -16,6 +16,7 @@ header[role="banner"] {
   .logo {
     font-size: 1em;
     margin: 0;
+    user-select: none;
   }
   span[role="img"] {
     position: relative;
@@ -25,8 +26,10 @@ header[role="banner"] {
   nav {
     @extend %valign;
     justify-content: flex-end;
-
-    a, a:visited { color: $blitzWhite; }
+    a {
+      padding: $halfPadding;
+      &, &:visited { color: inherit; }
+    }
     * + * { margin-left: $fullPadding; }
   }
 }

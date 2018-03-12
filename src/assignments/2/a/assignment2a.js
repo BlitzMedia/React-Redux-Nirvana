@@ -45,6 +45,7 @@ class Calculator extends Component {
       scale === 'c' ? console.log('hola Celsius') : console.log('hola Fahrenheit!')
     }
 
+    console.log(celsius, fahrenheit)
 
     return (
       <div>

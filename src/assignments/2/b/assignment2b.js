@@ -120,6 +120,7 @@ const Bonus = () =>
     <br/>
     <Subtitle>Things we've done:</Subtitle>
     <ul>
+      <li>Implemented SCSS preprocessing, without ejecting (there's a bad node-sass-chokidar bug and this held us back)</li>
       <li>Implemented Bulma, a pretty cool CSS framework</li>
       <li>Started using Bloomer JS, the best React implementation we could find</li>
       <li>Rely as little as possible in CSS / HTML and purely in declarative programming (we're much better now)</li>

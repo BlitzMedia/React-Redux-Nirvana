@@ -6,6 +6,8 @@ import Home from './home'
 import Assignment1 from './assignments/1/assignment1'
 import Calculator from './assignments/2/a/assignment2a'
 import Website from './assignments/2/b/assignment2b'
+import MyAsyncComponent1 from './assignments/2/c/MyAsyncComponent1'
+import MyAsyncComponent2 from './assignments/2/c/MyAsyncComponent2'
 
 class App extends Component {
   render() {
@@ -28,6 +30,7 @@ class App extends Component {
             <Route path="/assignments/1" component={Assignment1}></Route>
             <Route path="/assignments/2/a" component={Calculator}></Route>
             <Route path="/assignments/2/b" component={Website}></Route>
+            <Route path="/assignments/2/c" component={MyAsyncComponent2}></Route>
           </main>
         </div>
       </Router>

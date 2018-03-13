@@ -1,12 +1,6 @@
 import React from 'react'
 import { Section, Container, Box, Title, Subtitle, Navbar, NavbarMenu, NavbarStart, NavbarEnd, NavbarItem, Field, Control, Input, Icon  } from 'bloomer'
 
-// Functions for calculating TemperatureInput
-const scaleNames = {
-  c: 'Celsius',
-  f: 'Fahrenheit'
-}
-
 // Calculadora
 
 function BoilingVerdict(props) {
@@ -25,11 +19,6 @@ function tryConvert(temperature, convert) {
   const rounded = Math.round(output * 1000) / 1000;
   return rounded.toString();
 }
-
-function cap(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
 
 export default class Website extends React.Component {
   constructor(props) {
@@ -59,7 +48,6 @@ export default class Website extends React.Component {
     const fahrenheit = scale === 'f' ? temperature : tryConvert(temperature, toFahrenheit)
 
     const onTemperatureChange = ({ target: { value }}) => {
-      var superTemperature = scale === 'c' ? '12345' : '67890'
       console.log(celsius + '   ' + fahrenheit)
       this.handleAllChange(value, scale)
     }
@@ -195,8 +183,8 @@ function PageIcon(props) {
     ? <div style={{height: 10, width: 30, backgroundColor: 'red'}} />
     : <div style={{height: 10, width: 30, backgroundColor: 'blue'}} />
 
-  if (props.page === 'celsius') return <span className="fa fa-fire" />;
-  return <span className="fa fa-snowflake" />
+  // if (props.page === 'celsius') return <span className="fa fa-fire" />;
+  // return <span className="fa fa-snowflake" />
 }
 
 // Questions!

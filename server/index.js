@@ -1,5 +1,6 @@
 // ASSIGNMENT:
-// TAKE this boilerplate/starter-kit: 
+// TAKE this boilerplate/starter-kit: https://github.com/hexacta/react-express-starter-kit
+
 // - git clone it and forget about the Nirvana repo for this week
 // - remove everything in `server/src` besides `index.js`
 // - Remove all usages of `new Router()` 
@@ -7,6 +8,8 @@
 //   api.get('/:bookTitle') 
 
 // - THEN PLAY WITH IT!
+
+// docs: http://expressjs.com/en/guide/routing.html
 
 // BEGINNING OF SERVER EXPERIMENTATION:
 

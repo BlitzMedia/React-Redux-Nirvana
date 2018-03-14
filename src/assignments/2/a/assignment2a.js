@@ -17,11 +17,11 @@ function toFahrenheit(celsius) { return (celsius * 9 / 5) + 32; }
 
 function tryConvert(temperature, convert) {
   const input = parseFloat(temperature);
-  if (Number.isNaN(input)) return '';
+  if (isNaN(input)) return '';
 
   const output = convert(input);
   const rounded = Math.round(output * 1000) / 1000;
-  return rounded.toString();
+  return rounded;
 }
 
 
@@ -41,9 +41,10 @@ class Calculator extends Component {
     const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
     const fahrenheit = scale === 'f' ? temperature : tryConvert(temperature, toFahrenheit);
 
-    const onTemperatureChange = ({scale, temperature}) => {
-      scale === 'c' ? console.log('hola Celsius') : console.log('hola Fahrenheit!')
-    }
+    // NOT USED -- DELETE IT!
+    // const onTemperatureChange = ({scale, temperature}) => {
+    //   scale === 'c' ? console.log('hola Celsius') : console.log('hola Fahrenheit!');
+    // }
 
     console.log(celsius, fahrenheit)
 

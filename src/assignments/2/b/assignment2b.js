@@ -1,12 +1,6 @@
 import React from 'react'
 import { Section, Container, Box, Title, Subtitle, Navbar, NavbarMenu, NavbarStart, NavbarEnd, NavbarItem, Field, Control, Input, Icon  } from 'bloomer'
 
-// Functions for calculating TemperatureInput
-const scaleNames = {
-  c: 'Celsius',
-  f: 'Fahrenheit'
-}
-
 // Calculadora
 
 function BoilingVerdict(props) {
@@ -26,11 +20,6 @@ function tryConvert(temperature, convert) {
   return rounded.toString();
 }
 
-function cap(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-
 export default class Website extends React.Component {
   constructor(props) {
     super(props)
@@ -41,31 +30,45 @@ export default class Website extends React.Component {
     }
   }
 
-  changePage = (page) => { this.setState({page: page}) }
-  handleAllChange = (temperature, scale) => { this.setState({temperature: temperature, scale: scale}) }
+  changePage = (page) => {
+    this.setState({page: page})
+  }
+
+  handleAllChange = (temperature, scale) => {
+    this.setState({temperature: temperature, scale: scale})
+  }
 
   render() {
     const { page, temperature, scale } = this.state
-    const { backgroundColor, title, Component } = pages[page]
+    const { backgroundColor, title, Component } = pages[page] 
 
     const navvers = Object.keys(pages) // We had to change the name because it was giving an error. Related to trying to override const, perhaps?
 
     const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature
     const fahrenheit = scale === 'f' ? temperature : tryConvert(temperature, toFahrenheit)
 
-    const onTemperatureChange = ({temperature, scale}) => {
-      //scale === 'c' ? this.handleCelsiusChange(celsius) : this.handleFahrenheitChange(fahrenheit)
-      var superTemperature = scale === 'c' ? '12345' : '67890'
+    const onTemperatureChange = ({ target: { value }}) => {
       console.log(celsius + '   ' + fahrenheit)
-      this.handleAllChange(temperature, scale)
+      this.handleAllChange(value, scale)
+    }
+
+    const scale2 = pages[page].scale
+
+    const componentProps = {
+      celsius,
+      fahrenheit,
+      temperature,
+      scale: scale2 === 'c' ? celsius : fahrenheit,
+      onTemperatureChange,
+      page
     }
 
     return(
       <Section>
-        <NavLinks onChange={this.changePage} pages={navvers} activePage={title} />
+        <NavLinks changePage={this.changePage} pages={navvers} activePage={title} />
 
         <Container style={{...pageStyle, backgroundColor}}>
-          <Component page={page} temperature={temperature} celsius={celsius} fahrenheit={fahrenheit} scale={pages[page].scale} onChange={onTemperatureChange} />
+          <Component {...componentProps} />
         </Container>
 
         <Container><BoilingVerdict celsius={parseFloat(celsius)} /></Container>
@@ -74,7 +77,16 @@ export default class Website extends React.Component {
   }
 }
 
-const NavLinks = ({ pages, onChange, activePage, celsius }) =>
+const TemperatureInput = ({page, temperature, celsius, fahrenheit, scale, onTemperatureChange}) =>
+  <Field>
+    <Control hasIcons>
+      <Input value={scale} onChange={onTemperatureChange} />
+      <Icon isSize='small' isAlign='left'><PageIcon page={page} /></Icon>
+    </Control>
+  </Field>
+
+
+const NavLinks = ({ pages, changePage, activePage, celsius }) =>
   <Container>
     <Navbar>
       <NavbarMenu isActive={true}>
@@ -86,7 +98,7 @@ const NavLinks = ({ pages, onChange, activePage, celsius }) =>
 
         <NavbarEnd>
           {pages.map((page, key) => (
-            <NavbarItem key={key} href='#/' onClick={() => onChange(page)}>{page}</NavbarItem>
+            <NavbarItem key={key} href='#/' onClick={() => changePage(page)}>{page}</NavbarItem>
           ))}
         </NavbarEnd>
       </NavbarMenu>
@@ -99,18 +111,11 @@ const Home = () =>
     <Subtitle tag='h3'>This is the Home of Assignment 2b.</Subtitle>
     <p>
       It is a low level custom-built non-URL-based page routing mechanism solution based on state.
-      It lets you switch pages, while demonstrating the "lifting of state" that is "shared" between multiple pages :)
+      It lets you change pages, while demonstrating the "lifting of state" that is "shared" between multiple pages :)
     </p>
   </Box>
-//(e, scale) => onChange(e.target.value, scale)
-const TemperatureInput = ({page, temperature, celsius, fahrenheit, scale, onChange}) =>
-  <Field>
-    <Control hasIcons>
-      <Input value={scale === 'c' ? celsius : fahrenheit} onChange={(e) => onChange({temperature: e.target.value, scale: scale})} placeholder={page + '!'} />
-      <Icon isSize='small' isAlign='left'><PageIcon /></Icon>
-    </Control>
-  </Field>
 
+//(e, scale) => onChange(e.target.value, scale)
 const Bonus = () =>
   <Box>
     <Title>Hey James!</Title>
@@ -175,8 +180,12 @@ const pageStyle = {
 }
 
 function PageIcon(props) {
-  if (props.page === 'celsius') return <span className="fa fa-fire" />;
-  return <span className="fa fa-snowflake" />
+  return props.page === 'celsius'
+    ? <div style={{height: 10, width: 30, backgroundColor: 'red'}} />
+    : <div style={{height: 10, width: 30, backgroundColor: 'blue'}} />
+
+  // if (props.page === 'celsius') return <span className="fa fa-fire" />;
+  // return <span className="fa fa-snowflake" />
 }
 
 // Questions!

@@ -6,7 +6,7 @@ import Home from './home'
 import Assignment1 from './assignments/1/assignment1'
 import Calculator from './assignments/2/a/assignment2a'
 import Website from './assignments/2/b/assignment2b'
-import MyAsyncComponent1 from './assignments/2/c/MyAsyncComponent1'
+// import MyAsyncComponent1 from './assignments/2/c/MyAsyncComponent1'
 import MyAsyncComponent2 from './assignments/2/c/MyAsyncComponent2'
 
 class App extends Component {
@@ -22,6 +22,7 @@ class App extends Component {
               <Link to={'/assignments/1'}>1st</Link>
               <Link to={'/assignments/2/a'}>2nd-A</Link>
               <Link to={'/assignments/2/b'}>2nd-B</Link>
+              <Link to={'/assignments/2/c'}>Fetch</Link>
             </nav>
           </header>
 

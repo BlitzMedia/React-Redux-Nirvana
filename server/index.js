@@ -3,11 +3,11 @@
 
 // - git clone it and forget about the Nirvana repo for this week
 // - remove everything in `server/src` besides `index.js`
-// - Remove all usages of `new Router()` 
+// - Remove all usages of `new Router()`
 // - remake the exact same API in the simpler style of using Express (i.e. no Routers
 //)
 // - MAIN WORK: make a flat URL structure for all your `.get` calls, ie: app.get('/api/books/:bookTitle') instead of
-//   api.get('/:bookTitle') 
+//   api.get('/:bookTitle')
 
 // - THEN PLAY WITH IT!
 
@@ -20,8 +20,6 @@
 
 const express = require('express')
 const app = express()
-
-app.get('/api/:slug', myRealApi)
 
 const myRealApi = (req, res) => {
   const slug = req.params.slug
@@ -51,6 +49,8 @@ const postsLists = {
     }
   ]
 }
+
+app.get('/api/:slug', myRealApi)
 
 app.listen(3000, function() {
   console.log('Example app listening on port 3000!')

@@ -8,21 +8,21 @@ const myFakeApi = async (url) => {
 
   console.log('END', new Date() - startTime, slug);
 
-  return data 
+  return data
 }
 
 export default myFakeApi
 
-const posts = {
-  'react-redux': {
-    title: 'React REdux TUtorial',
-    caption: 'bla bla bla'
-  },
-  'functional-programming': {
-    title: 'Function Programming',
-    caption: 'lorem ipsum'
-  }
-}
+// const posts = {
+//   'react-redux': {
+//     title: 'React REdux TUtorial',
+//     caption: 'bla bla bla'
+//   },
+//   'functional-programming': {
+//     title: 'Function Programming',
+//     caption: 'lorem ipsum'
+//   }
+// }
 
 const postsLists = {
   'react-redux': [
@@ -88,7 +88,7 @@ const fakeDelay = (milliseconds) => {
 //   console.log('START', new Date)
 //   const result = await fetch('https://davidwalsh.name/some/url')
 //   console.log('MIDDLE', new Date)
-//   const result2 = await fetch('http://anotherapi/' + result.slug) 
+//   const result2 = await fetch('http://anotherapi/' + result.slug)
 //   console.log('END', new Date)
 //   return result2
 // }
@@ -126,7 +126,7 @@ const fakeDelay = (milliseconds) => {
 
 //   console.log('END', new Date, data)
 
-//   return data 
+//   return data
 // }
 
 
@@ -182,4 +182,3 @@ const fakeDelay = (milliseconds) => {
 //     )
 //   }
 // }
-
